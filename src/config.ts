@@ -19,7 +19,7 @@ const envSchema = z.object({
   DEFAULT_WORKSPACE_NAME: z.string().optional().default(""),
   DEFAULT_WORKSPACE_PATH: z.string().optional().default(""),
   DEFAULT_PATH: z.string().optional().default(""),
-  DEFAULT_MODE: z.enum(["read", "write"]).optional().default("read"),
+  DEFAULT_MODE: z.enum(["read", "write"]).optional().default("write"),
   ENABLE_RUN_COMMAND: z.string().optional().default("false"),
   MAX_OUTPUT_CHARS: z.coerce.number().int().positive().optional().default(12000),
   MAX_COMMAND_SECONDS: z.coerce.number().int().positive().optional().default(1800),

@@ -9,7 +9,7 @@ Run Codex on your laptop and talk to it over Telegram without pushing your proje
 - Starts and resumes real `codex exec` sessions per Telegram chat and path
 - Persists the current path, active sessions, and preferred mode on disk
 - Lets you switch folders naturally with `/cd` or messages like `go to ~/Desktop/project`
-- Exposes remote commands for status, git context, session reset, and session selection
+- Exposes remote commands for status, git context, fresh threads, and session selection
 - Defaults to `write` mode and keeps shell execution disabled unless you opt in
 - Uses Telegram drafts and chat actions for live progress in private chats
 - Sends oversized outputs as attached text documents instead of flooding the chat
@@ -25,6 +25,7 @@ Run Codex on your laptop and talk to it over Telegram without pushing your proje
    - `/whoami` to confirm your chat and user IDs
    - If you set a default path, just say what you want done
    - Otherwise: `/cd "/absolute/path/to/project"`
+   - Optional: `/sessions` to jump into an existing Codex conversation from your laptop
    - Then just message the bot normally
 
 ## Commands
@@ -43,6 +44,15 @@ Run Codex on your laptop and talk to it over Telegram without pushing your proje
 - `/stop` stops the current in-flight Codex or shell task for the current chat
 - Any non-command message is sent to Codex in the current path
 - Plain English shortcuts also work: `start over`, `continue`, `what changed`, `status`, `go to ~/Desktop/project`
+
+## How Sessions Work
+
+- The bot keeps a current path per chat.
+- By default, it resumes the last bridge-tracked Codex thread for that path and mode.
+- `/sessions` reads your local `~/.codex/session_index.jsonl` and lists recent Codex sessions from your laptop.
+- `/session <id>` attaches the chat to a specific Codex session, even if that session started outside Telegram.
+- `/new` clears the selected session and starts a fresh conversation for the current path.
+- If the saved current path is invalid or not absolute, the bot clears it and asks you to `/cd` into a real folder.
 
 ## Telegram UX
 
